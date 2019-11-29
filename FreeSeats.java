@@ -8,20 +8,24 @@ class Main {
 
         String matrixCoordinates = stringScanner.nextLine();
         String[] matrixStringCoordinates = matrixCoordinates.split(" ");
+        int rows = Integer.parseInt((matrixStringCoordinates[0]));
+        int columns = Integer.parseInt((matrixStringCoordinates[1]));
 
-        int     rows = Integer.parseInt((matrixStringCoordinates[0])),
-                columns = Integer.parseInt((matrixStringCoordinates[1])),
-                seatsNeeded;
-
+        int seatsNeeded;
         int[][] matrix = new int[rows][columns];
+        for (int i = 0; i < rows; i++) {
+            String rowString = stringScanner.nextLine();
+            String[] rowSplit = rowString.split(" ");
+            for (int j = 0; j < columns; j++) {
+                matrix[i][j] = Integer.parseInt(rowSplit[j]);
+            }
+        }
 
-        filling2DArray(stringScanner, rows, columns, matrix);
 
         seatsNeeded = scanner.nextInt();
 
         System.out.println(countFreeSpaces(matrix,rows,columns,seatsNeeded));
     }
-
     private static int countFreeSpaces(int[][] inputMatrix, int rows, int columns, int spacesNeeded) {
         for (int i = 0; i < rows; i++) {
             int freeSpaces = 0;
@@ -38,15 +42,5 @@ class Main {
             }
         }
         return -1;
-    }
-
-    private static void filling2DArray(Scanner stringScanner, int rows, int columns, int[][] matrix) {
-        for (int i = 0; i < rows; i++) {
-            String rowString = stringScanner.nextLine();
-            String[] rowSplit = rowString.split(" ");
-            for (int j = 0; j < columns; j++) {
-                matrix[i][j] = Integer.parseInt(rowSplit[j]);
-            }
-        }
     }
 }
