@@ -1,14 +1,26 @@
 import java.util.Scanner;
 
 class Main {
-//    public static void print2D(int mat[][]){
-//        // Loop through all rows
-//        for (int[] row : mat)
-//
-//            // converting each row as string
-//            // and then printing in a separate line
-//            System.out.println(Arrays.toString(row));
-//    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Scanner stringScanner = new Scanner(System.in);
+
+        String matrixCoordinates = stringScanner.nextLine();
+        String[] matrixStringCoordinates = matrixCoordinates.split(" ");
+
+        int     rows = Integer.parseInt((matrixStringCoordinates[0])),
+                columns = Integer.parseInt((matrixStringCoordinates[1])),
+                seatsNeeded;
+
+        int[][] matrix = new int[rows][columns];
+
+        filling2DArray(stringScanner, rows, columns, matrix);
+
+        seatsNeeded = scanner.nextInt();
+
+        System.out.println(countFreeSpaces(matrix,rows,columns,seatsNeeded));
+    }
 
     private static int countFreeSpaces(int[][] inputMatrix, int rows, int columns, int spacesNeeded) {
         for (int i = 0; i < rows; i++) {
@@ -27,6 +39,7 @@ class Main {
         }
         return -1;
     }
+
     private static void filling2DArray(Scanner stringScanner, int rows, int columns, int[][] matrix) {
         for (int i = 0; i < rows; i++) {
             String rowString = stringScanner.nextLine();
@@ -36,26 +49,4 @@ class Main {
             }
         }
     }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Scanner stringScanner = new Scanner(System.in);
-
-        String matrixCoordinates = stringScanner.nextLine();
-        String[] matrixStringCoordinates = matrixCoordinates.split(" ");
-
-        int rows = Integer.parseInt((matrixStringCoordinates[0]));
-        int columns = Integer.parseInt((matrixStringCoordinates[1]));
-        int seatsNeeded;
-
-        int[][] matrix = new int[rows][columns];
-
-        filling2DArray(stringScanner, rows, columns, matrix);
-
-        seatsNeeded = scanner.nextInt();
-
-        System.out.println(countFreeSpaces(matrix,rows,columns,seatsNeeded));
-    }
-
-
 }
